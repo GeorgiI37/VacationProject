@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+    <style>
+        body { background: #D6D6D6; }
+    </style>
+</head>
+<body class="container">
+
+    <header style="border: 5px; border-style: solid; border-color: gray;">
+        <%- include('../../partials/header'); %>
+    </header>
+
+    <main>
+        <div>
+            <h1 style="text-align: center; padding-top: 10px; padding-bottom: 10px; background-color: #BE0000; width: 100%;"><%= flag ? 'Edit' : 'Add' %> Destination</h1>
+        </div>
+        <div style="border: 5px; border-style: solid; border-color: gray; padding-top: 25px; padding-left: 10px; padding-right: 10px; background-color: white;">
+            <form action="<%= flag ? '/destinations/update' : '/destinations/create' %>" method="post">
+                <div class="form-group">
+                    <input type="text" id="destination_id" name="destination_id" class="form-control" value="<%= flag ? destinationres.destination_id : '' %>" hidden>
+                    <label for="input1" class="form-label">Country:</label>
+                    <input type="text" id="country" name="country" class="form-control" value="<%= flag ? destinationres.country : '' %>" autofocus>
+                    <label for="input2" class="form-label">City:</label>
+                    <input type="text" id="city" name="city" class="form-control" value="<%= flag ? destinationres.city : '' %>" autofocus>
+                    <label for="input1" class="form-label">SightSeeing:</label>
+                    <input type="text" id="sightseeing" name="sightseeing" class="form-control" value="<%= flag ? destinationres.sightseeing : '' %>" autofocus>
+                </div>
+                <input class="btn btn-lg btn-primary btn-block" type="submit" value="<%= flag ? 'Update' : 'Create' %>">
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../../partials/footer'); %>
+    </footer>
+
+</body>
+</html>

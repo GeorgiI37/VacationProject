@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+    <style>
+        body { background: #D6D6D6; }
+    </style>
+</head>
+<body class="container">
+
+    <header style="border: 5px; border-style: solid; border-color: gray;">
+        <%- include('../../partials/header'); %>
+    </header>
+
+    <main>
+        <div>
+            <h1 style="text-align: center; padding-top: 10px; padding-bottom: 10px; background-color: #BE0000; width: 100%;">Destinations</h1>
+        </div>
+        <div style="border: 5px; border-style: solid; border-color: gray; padding-top: 25px; padding-left: 10px; padding-right: 10px; background-color: white;">
+            <a href="/destinations/create" class="btn btn-primary">Add Destination</a>
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>SightSeeing</th>
+                    <th>Action</th>
+                </tr>
+                <% if (locals.destinationres) { %>
+                    <% locals.destinationres.forEach(function(destinations) { %>
+                        <tr>
+                            <td><%= destinations.destination_id %></td>
+                            <td><%= destinations.country %></td>
+                            <td><%= destinations.city %></td>
+                            <td><%= destinations.sightseeing %></td>
+                            <td>
+                                <a href="<%= '/destinations/edit?destination_id=' + destinations.destination_id %>" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="javascript:;" data-href="<%= '/destinations/delete?destination_id=' + destinations.destination_id %>" data-toggle="modal" data-target="#confirm-delete" class="delete btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i>Remove</a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } %>
+            </ul>
+        </div>
+
+        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="modal1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            <div class="modal-header d-block text-center">
+                <h4 class="modal-title d-inline-block">Confirm Delete</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                    <p class="text-center">You are about to delete this Zone.</p>
+                    <p class="text-center">Do you want to proceed?'</p>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger btn-ok" data-dismiss="modal">Delete</a>
+            </div>
+
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../../partials/footer'); %>
+    </footer>
+
+</body>
+</html>

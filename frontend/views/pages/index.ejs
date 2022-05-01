@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+    <style>
+        body { background: #D6D6D6; }
+    </style>
+</head>
+<body class="container">
+    <main>
+        <div>
+            <h1 style="text-align: center; padding-top: 10px; padding-bottom: 10px; background-color: #BE0000; width: 100%;">Login</h1>
+        </div>
+        <div>
+            <form action="/process" method="post">
+                <div class="form-group">
+                    <label for="input1" class="form-label">Username:</label>
+                    <input type="text" id="username" name="username" class="form-control" autofocus>
+                    <label for="input2" class="form-label">Password:</label>
+                    <input type="text" id="password" name="password" class="form-control" autofocus>
+                </div>
+                <input class="btn btn-lg btn-primary btn-block" type="submit">
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>

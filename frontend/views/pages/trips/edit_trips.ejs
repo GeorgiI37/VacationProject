@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+    <style>
+        body { background: #D6D6D6; }
+    </style>
+</head>
+<body class="container">
+
+    <header style="border: 5px; border-style: solid; border-color: gray;">
+        <%- include('../../partials/header'); %>
+    </header>
+
+    <main>
+        <div>
+            <h1 style="text-align: center; padding-top: 10px; padding-bottom: 10px; background-color: #BE0000; width: 100%;"><%= flag ? 'Edit' : 'Add' %> Trip</h1>
+        </div>
+        <div style="border: 5px; border-style: solid; border-color: gray; padding-top: 25px; padding-left: 10px; padding-right: 10px; background-color: white;">
+            <form action="<%= flag ? '/trips/update' : '/trips/create' %>" method="post">
+                <div class="form-group">
+                    <input type="text" id="trip_id" name="trip_id" class="form-control" value="<%= flag ? tripres.trip_id : '' %>" hidden>
+                    <label for="input1" class="form-label">Transportation:</label>
+                    <input type="text" id="transportation" name="transportation" class="form-control" value="<%= flag ? tripres.transportation : '' %>" autofocus>
+                    <label for="input2" class="form-label">Start Date:</label>
+                    <input type="date" id="startdate" name="startdate" class="form-control" value="<%= flag ? tripres.startdate : '' %>" autofocus>
+                    <label for="input1" class="form-label">End Date:</label>
+                    <input type="date" id="enddate" name="enddate" class="form-control" value="<%= flag ? tripres.enddate : '' %>" autofocus>
+                    <label for="input2" class="form-label">Trip Name:</label>
+                    <input type="text" id="tripname" name="tripname" class="form-control" value="<%= flag ? tripres.tripname : '' %>" autofocus>
+                    <label for="input2" class="form-label">Destination:</label>
+                    <select id="destination_id" name="destination_id" class="form-control" required>
+                        <option value="">Select Destination</option>
+                        <% if (locals.destinationres) { %>
+                            <% locals.destinationres.forEach(function(destinations) { %>
+                                <% if (!flag) { %>
+                                    <option value="<%= destinations.destination_id %>"><%= destinations.country %></option>
+                                <% } else { %>        
+                                    <% if (destinations.destination_id == tripres.destination_id) { %>
+                                        <option value="<%= destinations.destination_id %>" selected><%= destinations.country %></option>
+                                    <% } else { %>
+                                        <option value="<%= destinations.destination_id %>"><%= destinations.country %></option>
+                                    <% } %>
+                                <% } %>
+                            <% }); %>
+                        <% } %>
+                    </select>
+                </div>
+                <input class="btn btn-lg btn-primary btn-block" type="submit" value="<%= flag ? 'Update' : 'Create' %>">
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../../partials/footer'); %>
+    </footer>
+
+</body>
+</html>
