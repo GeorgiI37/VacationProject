@@ -97,11 +97,6 @@ def create_trips():
     return jsonify(result)
 
 
-
-
-
-
-
 #api to get all values from the destination table
 @app.route('/api/destinations', methods=['GET'])
 def get_destinations():
